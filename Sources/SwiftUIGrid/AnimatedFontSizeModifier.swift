@@ -44,9 +44,6 @@ private struct AnimatingFontModifier: AnimatableModifier {
   public func body(content: Self.Content) -> some View {
     content
       .animation(.none, value: fontSize) // Stops text from moving around when text changes
-      .font(
-        .custom(fontFace.name, size: fontSize)
-          .weight(fontFace.weight)
-      )
+      .withFont(face: fontFace, size: fontSize)
   }
 }
