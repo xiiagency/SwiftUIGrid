@@ -23,11 +23,21 @@ public struct FontFace : Hashable {
   public let weight: Font.Weight
   
   /**
+   The design of the font.
+   */
+  public let design: Font.Design
+  
+  /**
    Initializes a new `FontFace` with optional font name and weight.
    */
-  public init(name: String? = nil, weight: Font.Weight = .regular) {
+  public init(
+    name: String? = nil,
+    weight: Font.Weight = .regular,
+    design: Font.Design = .default
+  ) {
     self.name = name
     self.weight = weight
+    self.design = design
   }
   
   /**
@@ -59,7 +69,7 @@ public struct FontFace : Hashable {
     if let name = name {
       return Font.custom(name, size: size).weight(weight)
     } else {
-      return Font.system(size: size, weight: weight, design: .default)
+      return Font.system(size: size, weight: weight, design: design)
     }
   }
   
