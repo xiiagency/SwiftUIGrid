@@ -41,28 +41,6 @@ public struct FontFace : Hashable {
   }
   
   /**
-   Converts the font to a NSAttributesString.Key map, with a specific size.
-   */
-  public func toAttributes(size: CGFloat) -> [NSAttributedString.Key : UIFont] {
-    if let name = name {
-      return [NSAttributedString.Key.font : UIFont(name: name, size: size)!]
-    } else {
-      return [
-        NSAttributedString.Key.font : UIFont.systemFont(ofSize: size, weight: weight.uiFontWeight)
-      ]
-    }
-  }
-  
-  /**
-   Converts the font to a NSAttributesString.Key map, with a specific size taken from a raw value of an enum.
-   */
-  public func toAttributes<Size : RawRepresentable>(
-    size: Size
-  ) -> [NSAttributedString.Key : UIFont] where Size.RawValue == CGFloat {
-    toAttributes(size: size.rawValue)
-  }
-  
-  /**
    Converts to a system or custom `Font` with a specific provided size.
    */
   public func toFont(size: CGFloat) -> Font {
@@ -114,36 +92,5 @@ extension View {
     size: Size
   ) -> some View where Size.RawValue == CGFloat {
     font(face.toFont(size: size.rawValue).smallCaps())
-  }
-}
-
-private extension Font.Weight {
-
-  /**
-   Convert `Font.Weight` to `UIFont.Weight`
-   */
-  var uiFontWeight: UIFont.Weight {
-    switch self {
-    case .ultraLight:
-      return .ultraLight
-    case .thin:
-      return .thin
-    case .light:
-      return .light
-    case .regular:
-      return .regular
-    case .medium:
-      return .medium
-    case .semibold:
-      return .semibold
-    case .bold:
-      return .bold
-    case .heavy:
-      return .heavy
-    case .black:
-      return .black
-    default:
-      return .regular
-    }
   }
 }
