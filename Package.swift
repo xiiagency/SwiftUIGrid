@@ -21,10 +21,5 @@ let package =
         name: "SwiftUIGrid",
         dependencies: []
       ),
-      // NOTE: Re-enable when tests are added.
-//      .testTarget(
-//        name: "SwiftUIGridTests",
-//        dependencies: ["SwiftUIGrid"]
-//      ),
     ]
   )
